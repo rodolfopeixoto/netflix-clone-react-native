@@ -6,12 +6,16 @@ import {
   Text,
   View
 } from 'react-native';
-import List from './components/List'
+import Header from './components/Header';
+import List from './components/List';
+import Slider from './components/Slider';
 
 class App extends Component {
   render() {
     return (
       <View style={[{flex: 1}, styles.container]}>
+          {/* <Header /> */}
+          <Slider />
           <List />
       </View>
     );

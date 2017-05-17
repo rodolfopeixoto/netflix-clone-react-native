@@ -3,7 +3,8 @@ import {
   Text,
   View,
   StyleSheet,
-  FlatList
+  FlatList,
+  Image
 } from 'react-native';
 
 class List extends Component {
@@ -12,9 +13,7 @@ class List extends Component {
 
    _renderItem(item){
      return(
-       <Text>
-         {item.name}
-       </Text>
+       <Image style={{width: 120, height: 180 }} source={{uri: item.image}} />
      )
    }
 
@@ -22,11 +21,27 @@ class List extends Component {
   render(){
     return(
         <View style={{flex: 1}}>
+          <View>
+            <Text style={styles.text}>Minha Lista</Text>
+            <FlatList
+              horizontal
+              ItemSeparatorComponent={() => <View style={{width: 5}} />}
+              renderItem={({item}) => this._renderItem(item)}
+              data={film}
+            />
+          </View>
+          <View>
+          <Text style={styles.text}>
+            Top Lista
+          </Text>
           <FlatList
-            renderItem={({item}) => this._renderItem(item)}
-             data={film}
-           />
+           horizontal
+           ItemSeparatorComponent={() => <View style={{width: 5}} /> }
+           renderItem={({item}) => this._renderItem(item)}
+           data={film}
+          />
         </View>
+     </View>
 
     );
   }
@@ -2533,6 +2548,12 @@ const film = [
    }
 ]
 
+
+const styles = StyleSheet.create({
+  text: {
+    color: 'white'
+  }
+})
 
 
 export default List
